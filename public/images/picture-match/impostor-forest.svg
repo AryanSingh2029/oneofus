@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">Pine forest at dusk</title>
+  <desc id="desc">A dense pine forest with a lavender moon over a dark ground.</desc>
+  <rect width="720" height="480" fill="#08090a"/>
+  <rect x="44" y="44" width="632" height="392" rx="24" fill="#101113" stroke="#30323a"/>
+  <circle cx="560" cy="116" r="42" fill="#5e6ad2"/>
+  <path d="M108 338h508v52H108z" fill="#111827"/>
+  <g fill="#25313a">
+    <path d="M156 128 94 326h124Z"/>
+    <path d="M278 96 196 326h164Z"/>
+    <path d="M432 118 358 326h148Z"/>
+    <path d="M556 86 456 326h200Z"/>
+  </g>
+  <g fill="#3b4651">
+    <path d="M202 176 148 326h108Z"/>
+    <path d="M360 146 298 326h124Z"/>
+    <path d="M492 164 432 326h120Z"/>
+  </g>
+  <g stroke="#8a8f98" stroke-width="8" stroke-linecap="round" opacity=".55">
+    <path d="M156 326v62"/>
+    <path d="M278 326v62"/>
+    <path d="M432 326v62"/>
+    <path d="M556 326v62"/>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">Mountain lake at dusk</title>
+  <desc id="desc">A calm lake reflecting two sharp mountains under a dark sky.</desc>
+  <rect width="720" height="480" fill="#08090a"/>
+  <rect x="44" y="44" width="632" height="392" rx="24" fill="#101113" stroke="#30323a"/>
+  <circle cx="565" cy="112" r="42" fill="#5e6ad2"/>
+  <path d="M104 314 256 126 410 314Z" fill="#25283f"/>
+  <path d="M236 314 402 108 602 314Z" fill="#363a60"/>
+  <path d="M256 126 298 178 226 164Z" fill="#d0d6e0"/>
+  <path d="M402 108 462 182 360 160Z" fill="#f7f8f8"/>
+  <path d="M84 314h552v70H84z" fill="#111827"/>
+  <path d="M124 358c76-24 144-24 220 0s148 24 236 0" fill="none" stroke="#5e6ad2" stroke-width="10" stroke-linecap="round" opacity=".75"/>
+  <path d="M140 386c66-16 130-16 196 0s138 16 218 0" fill="none" stroke="#8a8f98" stroke-width="6" stroke-linecap="round" opacity=".65"/>
+</svg>

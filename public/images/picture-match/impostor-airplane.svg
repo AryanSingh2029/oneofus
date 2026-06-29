@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">Paper airplane</title>
+  <desc id="desc">A paper airplane flying through a dark sky with lavender trails.</desc>
+  <rect width="720" height="480" fill="#08090a"/>
+  <rect x="44" y="44" width="632" height="392" rx="24" fill="#101113" stroke="#30323a"/>
+  <path d="M132 240 582 96 454 368 354 270 276 348Z" fill="#d0d6e0" stroke="#34343a" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M354 270 582 96 276 348Z" fill="#f7f8f8" opacity=".7"/>
+  <path d="M454 368 418 250 582 96Z" fill="#8a8f98" opacity=".55"/>
+  <path d="M142 326c92-28 164-24 238 12" fill="none" stroke="#5e6ad2" stroke-width="10" stroke-linecap="round"/>
+  <path d="M116 372c70-18 132-16 194 6" fill="none" stroke="#828fff" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+</svg>

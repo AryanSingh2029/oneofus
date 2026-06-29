@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">Rocket launch</title>
+  <desc id="desc">A lavender rocket launching through a dark sky.</desc>
+  <rect width="720" height="480" fill="#08090a"/>
+  <rect x="44" y="44" width="632" height="392" rx="24" fill="#101113" stroke="#30323a"/>
+  <path d="M360 74c76 62 96 150 56 264H304C264 224 284 136 360 74Z" fill="#d0d6e0" stroke="#34343a" stroke-width="8"/>
+  <circle cx="360" cy="176" r="38" fill="#5e6ad2"/>
+  <path d="M304 286 218 356l80-16Z" fill="#5e6ad2"/>
+  <path d="M416 286 502 356l-80-16Z" fill="#5e6ad2"/>
+  <path d="M330 338h60l-30 78Z" fill="#828fff"/>
+  <g fill="#62666d">
+    <circle cx="162" cy="118" r="6"/>
+    <circle cx="520" cy="120" r="5"/>
+    <circle cx="576" cy="228" r="7"/>
+    <circle cx="208" cy="252" r="5"/>
+  </g>
+</svg>

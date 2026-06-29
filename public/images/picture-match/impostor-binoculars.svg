@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">Binoculars</title>
+  <desc id="desc">A pair of binoculars with round lavender glass on a dark surface.</desc>
+  <rect width="720" height="480" fill="#08090a"/>
+  <rect x="44" y="44" width="632" height="392" rx="24" fill="#101113" stroke="#30323a"/>
+  <path d="M238 160h244l54 184H184Z" fill="#1a1b1d" stroke="#34343a" stroke-width="8" stroke-linejoin="round"/>
+  <rect x="302" y="132" width="116" height="82" rx="20" fill="#23252a"/>
+  <circle cx="270" cy="292" r="82" fill="#050506" stroke="#5e6ad2" stroke-width="14"/>
+  <circle cx="450" cy="292" r="82" fill="#050506" stroke="#5e6ad2" stroke-width="14"/>
+  <circle cx="270" cy="292" r="40" fill="#141516" stroke="#828fff" stroke-width="8"/>
+  <circle cx="450" cy="292" r="40" fill="#141516" stroke="#828fff" stroke-width="8"/>
+</svg>
