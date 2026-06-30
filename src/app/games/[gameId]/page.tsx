@@ -25,6 +25,11 @@ const setupCopy = {
     title: "Choose how this question round should be played.",
     body: "Most players answer the same prompt. One player answers a different prompt and tries to make their answer sound natural.",
   },
+  mafia: {
+    eyebrow: "Mafia setup",
+    title: "Choose how this Mafia game should be played.",
+    body: "Pass one phone around for private roles, night choices, day discussion, voting, and eliminations.",
+  },
 } as const;
 
 export function generateStaticParams() {

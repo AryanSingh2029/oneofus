@@ -57,7 +57,7 @@ export const gameModes: GameMode[] = [
     minPlayers: 5,
     maxPlayers: 16,
     icon: "mafia",
-    setupEnabled: false,
+    setupEnabled: true,
   },
 ];
 
