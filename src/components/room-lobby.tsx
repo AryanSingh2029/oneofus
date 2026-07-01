@@ -70,6 +70,13 @@ type DetectiveResult = {
   label: string;
 } | null;
 
+function preloadImage(src: string | undefined | null) {
+  if (!src || typeof window === "undefined") return;
+
+  const image = new window.Image();
+  image.src = src;
+}
+
 export function RoomLobby({ code }: { code: string }) {
   const [loadState, setLoadState] = useState<LoadState>("loading");
   const [room, setRoom] = useState<Room | null>(null);
@@ -222,6 +229,7 @@ export function RoomLobby({ code }: { code: string }) {
 
         setRound(data.round);
         setAssignment(data.assignment);
+        preloadImage(data.assignment.secret_image);
       } catch {
         if (isMounted) setAssignment(null);
       }
@@ -1073,6 +1081,7 @@ export function RoomLobby({ code }: { code: string }) {
                       alt={assignment.secret}
                       className="mx-auto mt-4 aspect-[4/3] w-full max-w-md rounded-lg border border-hairline object-cover"
                       height={384}
+                      priority
                       src={assignment.secret_image}
                       width={512}
                     />

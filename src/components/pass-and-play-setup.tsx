@@ -51,6 +51,13 @@ const wordPairs: WordPair[] = wordMatchPairs;
 const picturePairs: PicturePair[] = pictureMatchPairs;
 const questionPairs: WordPair[] = questionMatchPairs;
 
+function preloadImage(src: string | undefined | null) {
+  if (!src || typeof window === "undefined") return;
+
+  const image = new window.Image();
+  image.src = src;
+}
+
 export function PassAndPlaySetup({ mode }: { mode: GameMode }) {
   return mode.id === "mafia" ? (
     <MafiaPassAndPlaySetup mode={mode} />
@@ -166,6 +173,10 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
       }),
     );
 
+    if (isPictureMatch) {
+      nextAssignments.forEach((assignment) => preloadImage(assignment.secretImage));
+    }
+
     setAssignments(nextAssignments);
     setRevealIndex(0);
     setIsSecretVisible(false);
@@ -255,6 +266,7 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
                   alt={currentAssignment.secret}
                   className="mt-4 aspect-[3/2] w-full max-w-[520px] rounded-xl border border-hairline object-cover"
                   height={347}
+                  priority
                   src={currentAssignment.secretImage}
                   width={520}
                 />
@@ -506,6 +518,7 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
               alt={impostorAssignment.secret}
               className="mx-auto mt-5 aspect-[3/2] w-full max-w-sm rounded-xl border border-hairline object-cover"
               height={256}
+              priority
               src={impostorAssignment.secretImage}
               width={384}
             />
