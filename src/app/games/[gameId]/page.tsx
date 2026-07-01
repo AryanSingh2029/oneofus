@@ -83,9 +83,13 @@ export default async function GameSetupPage({ params }: GameSetupPageProps) {
             title="One phone"
           />
           <PlayModeCard
-            body="Host creates a room code and everyone joins from their own phone. This will use Supabase Realtime later."
+            body="Host creates a room code and everyone joins from their own phone. The live lobby is powered by Supabase."
+            actions={[
+              { href: `/rooms/new?game=${mode.id}`, label: "Create room" },
+              { href: `/rooms/join?game=${mode.id}`, label: "Join room" },
+            ]}
             icon={<MonitorSmartphone size={20} />}
-            status="Coming soon"
+            status="Lobby ready"
             title="Separate phones"
           />
         </div>
@@ -95,6 +99,7 @@ export default async function GameSetupPage({ params }: GameSetupPageProps) {
 }
 
 function PlayModeCard({
+  actions,
   body,
   cta,
   href,
@@ -102,6 +107,10 @@ function PlayModeCard({
   status,
   title,
 }: {
+  actions?: Array<{
+    href: string;
+    label: string;
+  }>;
   body: string;
   cta?: string;
   href?: string;
@@ -123,7 +132,24 @@ function PlayModeCard({
         {title}
       </h2>
       <p className="mt-4 text-sm leading-6 text-ink-subtle">{body}</p>
-      {cta ? (
+      {actions ? (
+        <span className="mt-8 flex flex-wrap gap-3">
+          {actions.map((action, index) => (
+            <Link
+              className={[
+                "focus-ring inline-flex min-h-10 items-center justify-center rounded-md px-3.5 py-2 text-sm font-medium transition-colors",
+                index === 0
+                  ? "bg-primary text-white hover:bg-primary-hover"
+                  : "border border-hairline bg-surface-2 text-ink hover:border-hairline-strong",
+              ].join(" ")}
+              href={action.href}
+              key={action.href}
+            >
+              {action.label}
+            </Link>
+          ))}
+        </span>
+      ) : cta ? (
         <span className="mt-8 inline-flex min-h-10 items-center justify-center rounded-md bg-primary px-3.5 py-2 text-sm font-medium text-white transition-colors group-hover:bg-primary-hover">
           {cta}
         </span>
@@ -137,7 +163,12 @@ function PlayModeCard({
 
   if (!href) {
     return (
-      <article className="rounded-xl border border-hairline bg-surface-1 p-6 opacity-75">
+      <article
+        className={[
+          "rounded-xl border border-hairline bg-surface-1 p-6",
+          actions ? "" : "opacity-75",
+        ].join(" ")}
+      >
         {content}
       </article>
     );

@@ -41,8 +41,8 @@ export const gameModes: GameMode[] = [
     description:
       "Everyone answers the same question about the group, except one player gets a different question and has to blend in.",
     flow: "Prompt -> answer -> compare -> discuss",
-    players: "4-12 players",
-    minPlayers: 4,
+    players: "3-12 players",
+    minPlayers: 3,
     maxPlayers: 12,
     icon: "question",
     setupEnabled: true,
