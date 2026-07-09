@@ -10,10 +10,10 @@ The visual system follows `DESIGN.md`: near-black canvas, charcoal lifted surfac
 - Picture Match: everyone gets the same image except one player.
 - Question Match: everyone answers the same question except one impostor gets a different question.
 - Mafia: classic hidden-role night/day social deduction.
+- GIF Match : everyone gets same gif except one 
 
 ## Planned Modes
-
-- Every-phone room mode with Supabase Realtime.
+- Every-phone room mode with Supabase Realtime.(removed it thought to keep it simple , but if you wanna do it u have to create realtime sessions (websocket) , ITS EASY)
 - Single-phone pass-and-play mode.
 
 ## MVP Flow
@@ -45,3 +45,4 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 
 # oneofus
+This project is entirely out of Curiosity which i got when i played the same game , I wanted to understand how its works so i build it, hope you will like it..
