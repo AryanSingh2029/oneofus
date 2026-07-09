@@ -5,6 +5,7 @@ import {
   Eye,
   EyeOff,
   HeartPulse,
+  Loader2,
   Moon,
   RotateCcw,
   ShieldHalf,
@@ -35,6 +36,7 @@ type PlayerAssignment = {
   role: "civilian" | "impostor";
   secret: string;
   secretImage?: string;
+  secretMedia?: GifMedia;
 };
 
 type WordPair = {
@@ -45,6 +47,22 @@ type WordPair = {
 type PicturePair = WordPair & {
   civilianImage: string;
   impostorImage: string;
+};
+
+type GifMedia = {
+  alt: string;
+  height: number;
+  mp4Url?: string;
+  query: string;
+  webpUrl?: string;
+  width: number;
+};
+
+type GifRound = {
+  civilian: string;
+  civilianGif: GifMedia;
+  impostor: string;
+  impostorGif: GifMedia;
 };
 
 const wordPairs: WordPair[] = wordMatchPairs;
@@ -58,6 +76,30 @@ function preloadImage(src: string | undefined | null) {
   image.src = src;
 }
 
+async function fetchGifRound() {
+  const response = await fetch("/api/giphy/gif-impostor", {
+    cache: "no-store",
+  });
+  const data = (await response.json()) as Partial<GifRound> & {
+    error?: string;
+  };
+
+  if (!response.ok) {
+    throw new Error(data.error ?? "Could not load GIFs from GIPHY.");
+  }
+
+  if (
+    !data.civilian ||
+    !data.impostor ||
+    !data.civilianGif ||
+    !data.impostorGif
+  ) {
+    throw new Error("GIPHY returned an incomplete GIF round.");
+  }
+
+  return data as GifRound;
+}
+
 export function PassAndPlaySetup({ mode }: { mode: GameMode }) {
   return mode.id === "mafia" ? (
     <MafiaPassAndPlaySetup mode={mode} />
@@ -66,18 +108,67 @@ export function PassAndPlaySetup({ mode }: { mode: GameMode }) {
   );
 }
 
+function GifMediaPreview({
+  className = "mt-4 max-w-[520px]",
+  media,
+}: {
+  className?: string;
+  media: GifMedia;
+}) {
+  const classes = [
+    "aspect-[3/2] w-full overflow-hidden rounded-xl border border-hairline bg-surface-2 object-cover",
+    className,
+  ].join(" ");
+
+  if (media.mp4Url) {
+    return (
+      <video
+        aria-label={media.alt}
+        autoPlay
+        className={classes}
+        height={media.height}
+        loop
+        muted
+        playsInline
+        src={media.mp4Url}
+        width={media.width}
+      />
+    );
+  }
+
+  if (media.webpUrl) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        alt={media.alt}
+        className={classes}
+        height={media.height}
+        src={media.webpUrl}
+        width={media.width}
+      />
+    );
+  }
+
+  return null;
+}
+
 function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
   const supportsPlayableReveal =
     mode.id === "word-match" ||
     mode.id === "picture-match" ||
-    mode.id === "question-match";
-  const isPictureMatch = mode.id === "picture-match";
-  const isQuestionMatch = mode.id === "question-match";
-  const secretNoun = isPictureMatch
-    ? "picture"
-    : isQuestionMatch
-      ? "question"
-      : "word";
+    mode.id === "question-match" ||
+    mode.id === "gif-impostor";
+  const isPictureMode = mode.id === "picture-match";
+  const isGifImpostor = mode.id === "gif-impostor";
+  const isQuestionMode = mode.id === "question-match";
+  const secretNoun =
+    isGifImpostor
+      ? "GIF"
+      : isPictureMode
+        ? "picture"
+        : isQuestionMode
+          ? "question"
+          : "word";
   const [phase, setPhase] = useState<RoundPhase>("setup");
   const [showRoles, setShowRoles] = useState(true);
   const [players, setPlayers] = useState<string[]>(
@@ -87,6 +178,8 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
   const [revealIndex, setRevealIndex] = useState(0);
   const [isSecretVisible, setIsSecretVisible] = useState(false);
   const [hasSeenSecret, setHasSeenSecret] = useState(false);
+  const [isStarting, setIsStarting] = useState(false);
+  const [roundError, setRoundError] = useState<string | null>(null);
   const [selectedVoteId, setSelectedVoteId] = useState<string | null>(null);
   const [questionAnswers, setQuestionAnswers] = useState<Record<string, string>>(
     {},
@@ -132,65 +225,92 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
     );
   }
 
-  function startRound() {
+  async function startRound() {
     if (!canStart || !supportsPlayableReveal) return;
 
-    const wordPair = wordPairs[Math.floor(Math.random() * wordPairs.length)];
-    const picturePair =
-      picturePairs[Math.floor(Math.random() * picturePairs.length)];
-    const questionPair =
-      questionPairs[Math.floor(Math.random() * questionPairs.length)];
-    const impostorIndex = Math.floor(Math.random() * namedPlayers.length);
-    const nextAssignments = shuffle<PlayerAssignment>(
-      namedPlayers.map((name, index) => {
-        const role: PlayerAssignment["role"] =
-          index === impostorIndex ? "impostor" : "civilian";
-        const isImpostor = role === "impostor";
-        const secret = isQuestionMatch
-          ? isImpostor
-            ? questionPair.impostor
-            : questionPair.civilian
-          : isPictureMatch
-          ? isImpostor
-            ? picturePair.impostor
-            : picturePair.civilian
-          : isImpostor
-            ? wordPair.impostor
-            : wordPair.civilian;
-        const secretImage = isPictureMatch
-          ? isImpostor
-            ? picturePair.impostorImage
-            : picturePair.civilianImage
-          : undefined;
+    setIsStarting(true);
+    setRoundError(null);
 
-        return {
-          id: `${index}-${name}`,
-          name,
-          role,
-          secret,
-          secretImage,
-        };
-      }),
-    );
+    try {
+      const gifRound = isGifImpostor ? await fetchGifRound() : null;
+      const wordPair = wordPairs[Math.floor(Math.random() * wordPairs.length)];
+      const picturePair =
+        picturePairs[Math.floor(Math.random() * picturePairs.length)];
+      const questionPair =
+        questionPairs[Math.floor(Math.random() * questionPairs.length)];
+      const impostorIndex = Math.floor(Math.random() * namedPlayers.length);
+      const nextAssignments = shuffle<PlayerAssignment>(
+        namedPlayers.map((name, index) => {
+          const role: PlayerAssignment["role"] =
+            index === impostorIndex ? "impostor" : "civilian";
+          const isImpostor = role === "impostor";
+          const secret = isQuestionMode
+            ? isImpostor
+              ? questionPair.impostor
+              : questionPair.civilian
+            : isGifImpostor && gifRound
+              ? isImpostor
+                ? gifRound.impostor
+                : gifRound.civilian
+              : isPictureMode
+                ? isImpostor
+                  ? picturePair.impostor
+                  : picturePair.civilian
+                : isImpostor
+                  ? wordPair.impostor
+                  : wordPair.civilian;
+          const secretImage = isPictureMode
+            ? isImpostor
+              ? picturePair.impostorImage
+              : picturePair.civilianImage
+            : undefined;
+          const secretMedia =
+            isGifImpostor && gifRound
+              ? isImpostor
+                ? gifRound.impostorGif
+                : gifRound.civilianGif
+              : undefined;
 
-    if (isPictureMatch) {
-      nextAssignments.forEach((assignment) => preloadImage(assignment.secretImage));
+          return {
+            id: `${index}-${name}`,
+            name,
+            role,
+            secret,
+            secretImage,
+            secretMedia,
+          };
+        }),
+      );
+
+      if (isPictureMode) {
+        nextAssignments.forEach((assignment) =>
+          preloadImage(assignment.secretImage),
+        );
+      }
+
+      setAssignments(nextAssignments);
+      setRevealIndex(0);
+      setIsSecretVisible(false);
+      setHasSeenSecret(false);
+      setSelectedVoteId(null);
+      setQuestionAnswers({});
+      setPhase("reveal");
+    } catch (error) {
+      setRoundError(
+        error instanceof Error
+          ? error.message
+          : "Could not start the GIF round.",
+      );
+    } finally {
+      setIsStarting(false);
     }
-
-    setAssignments(nextAssignments);
-    setRevealIndex(0);
-    setIsSecretVisible(false);
-    setHasSeenSecret(false);
-    setSelectedVoteId(null);
-    setQuestionAnswers({});
-    setPhase("reveal");
   }
 
   function goToNextPlayer() {
     setIsSecretVisible(false);
     setHasSeenSecret(false);
     if (isLastReveal) {
-      setPhase(isQuestionMatch ? "answers" : "discussion");
+      setPhase(isQuestionMode ? "answers" : "discussion");
       return;
     }
 
@@ -261,7 +381,9 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
               <span className="text-sm uppercase tracking-[0.4px] text-ink-tertiary">
                 Your {secretNoun}
               </span>
-              {currentAssignment.secretImage ? (
+              {currentAssignment.secretMedia ? (
+                <GifMediaPreview media={currentAssignment.secretMedia} />
+              ) : currentAssignment.secretImage ? (
                 <Image
                   alt={currentAssignment.secret}
                   className="mt-4 aspect-[3/2] w-full max-w-[520px] rounded-xl border border-hairline object-cover"
@@ -270,7 +392,7 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
                   src={currentAssignment.secretImage}
                   width={520}
                 />
-              ) : isQuestionMatch ? (
+              ) : isQuestionMode ? (
                 <span className="mt-5 max-w-xl font-display text-[30px] font-semibold leading-tight tracking-[-0.8px] text-ink md:text-[44px] md:tracking-[-1.2px]">
                   {currentAssignment.secret}
                 </span>
@@ -280,11 +402,11 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
                 </span>
               )}
               <span className="mt-6 max-w-md text-sm leading-6 text-ink-subtle">
-                {isQuestionMatch
+                {isQuestionMode
                   ? `Choose the player who fits this question, then hide it before passing the phone.`
                   : `Memorize it, then tap Hide ${secretNoun} before passing the phone.`}
               </span>
-              {isQuestionMatch ? (
+              {isQuestionMode ? (
                 <span className="mt-6 grid w-full max-w-xl gap-2">
                   {assignments.map((assignment) => {
                     const isSelected = currentAnswerTargetId === assignment.id;
@@ -336,7 +458,7 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
           </Button>
           <Button
             disabled={
-              !isSecretVisible || (isQuestionMatch && !currentAnswerTargetId)
+              !isSecretVisible || (isQuestionMode && !currentAnswerTargetId)
             }
             onClick={() => setIsSecretVisible(false)}
             variant="secondary"
@@ -347,13 +469,13 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
             disabled={
               !hasSeenSecret ||
               isSecretVisible ||
-              (isQuestionMatch && !currentAnswerTargetId)
+              (isQuestionMode && !currentAnswerTargetId)
             }
             onClick={goToNextPlayer}
             variant="secondary"
           >
             {isLastReveal
-              ? isQuestionMatch
+              ? isQuestionMode
                 ? "Reveal answers"
                 : "Start discussion"
               : "Next player"}
@@ -418,7 +540,7 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
           Everyone has seen their card.
         </h1>
         <p className="mt-5 text-base leading-7 text-ink-muted">
-          {isQuestionMatch
+          {isQuestionMode
             ? "Everyone answers their question, then the group discusses whose answer seems like it came from a different prompt."
             : `Start talking. Ask careful questions, answer naturally, and try to find the one person whose ${secretNoun} does not match.`}
         </p>
@@ -513,7 +635,12 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
             The impostor was {impostorAssignment.name}. Their {secretNoun} was{" "}
             {impostorAssignment.secret}.
           </p>
-          {impostorAssignment.secretImage ? (
+          {impostorAssignment.secretMedia ? (
+            <GifMediaPreview
+              className="mx-auto mt-5 max-w-sm"
+              media={impostorAssignment.secretMedia}
+            />
+          ) : impostorAssignment.secretImage ? (
             <Image
               alt={impostorAssignment.secret}
               className="mx-auto mt-5 aspect-[3/2] w-full max-w-sm rounded-xl border border-hairline object-cover"
@@ -546,8 +673,9 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
           Set up {mode.title}.
         </h1>
         <p className="mt-5 text-base leading-7 text-ink-muted">
-          Choose whether players can see their team, add the players in pass
-          order, then start the round from this phone.
+          {isGifImpostor
+            ? "GIFs load from GIPHY when the round starts. Add players in pass order, then reveal each looping clue privately."
+            : "Choose whether players can see their team, add the players in pass order, then start the round from this phone."}
         </p>
 
         <div className="mt-8 grid gap-3">
@@ -619,12 +747,17 @@ function MatchPassAndPlaySetup({ mode }: { mode: GameMode }) {
           </Button>
           <Button
             className="flex-1 sm:flex-none"
-            disabled={!canStart || !supportsPlayableReveal}
+            disabled={!canStart || !supportsPlayableReveal || isStarting}
             onClick={startRound}
           >
-            Start round
+            {isStarting ? <Loader2 className="animate-spin" size={16} /> : null}
+            {isStarting ? "Loading GIFs" : "Start round"}
           </Button>
         </div>
+
+        {roundError ? (
+          <p className="mt-4 text-sm leading-6 text-red-300">{roundError}</p>
+        ) : null}
 
         <p className="mt-4 text-sm leading-6 text-ink-subtle">
           {!supportsPlayableReveal

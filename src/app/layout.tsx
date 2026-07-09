@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "One of Us",
-  description: "Social deduction games for one phone or every phone in the room.",
+  description: "Single-phone social deduction games for quick groups.",
 };
 
 export default function RootLayout({

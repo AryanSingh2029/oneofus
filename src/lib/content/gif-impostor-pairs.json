@@ -1,0 +1,402 @@
+[
+  {
+    "civilian": "excited celebration reaction",
+    "impostor": "awkward applause reaction"
+  },
+  {
+    "civilian": "dramatic crying reaction",
+    "impostor": "fake crying reaction"
+  },
+  {
+    "civilian": "confused reaction",
+    "impostor": "suspicious side eye reaction"
+  },
+  {
+    "civilian": "shocked reaction",
+    "impostor": "nervous reaction"
+  },
+  {
+    "civilian": "happy dance reaction",
+    "impostor": "awkward dancing reaction"
+  },
+  {
+    "civilian": "angry reaction",
+    "impostor": "annoyed reaction"
+  },
+  {
+    "civilian": "facepalm reaction",
+    "impostor": "embarrassed reaction"
+  },
+  {
+    "civilian": "laughing reaction",
+    "impostor": "trying not to laugh reaction"
+  },
+  {
+    "civilian": "running away reaction",
+    "impostor": "sneaking away reaction"
+  },
+  {
+    "civilian": "victory reaction",
+    "impostor": "relieved reaction"
+  },
+  {
+    "civilian": "thinking reaction",
+    "impostor": "overthinking reaction"
+  },
+  {
+    "civilian": "surprised applause reaction",
+    "impostor": "slow clap reaction"
+  },
+  {
+    "civilian": "mind blown reaction",
+    "impostor": "blank stare reaction"
+  },
+  {
+    "civilian": "excited screaming reaction",
+    "impostor": "quiet panic reaction"
+  },
+  {
+    "civilian": "thumbs up reaction",
+    "impostor": "uncertain thumbs up reaction"
+  },
+  {
+    "civilian": "high five reaction",
+    "impostor": "missed high five reaction"
+  },
+  {
+    "civilian": "party dancing reaction",
+    "impostor": "standing awkwardly at party reaction"
+  },
+  {
+    "civilian": "confident walk reaction",
+    "impostor": "nervous walk reaction"
+  },
+  {
+    "civilian": "mic drop reaction",
+    "impostor": "oops reaction"
+  },
+  {
+    "civilian": "chef kiss reaction",
+    "impostor": "disappointed food reaction"
+  },
+  {
+    "civilian": "gasp reaction",
+    "impostor": "pretending to be surprised reaction"
+  },
+  {
+    "civilian": "eye roll reaction",
+    "impostor": "polite smile reaction"
+  },
+  {
+    "civilian": "happy tears reaction",
+    "impostor": "sad tears reaction"
+  },
+  {
+    "civilian": "screaming excited reaction",
+    "impostor": "screaming scared reaction"
+  },
+  {
+    "civilian": "proud reaction",
+    "impostor": "humble reaction"
+  },
+  {
+    "civilian": "celebrity wave reaction",
+    "impostor": "awkward wave reaction"
+  },
+  {
+    "civilian": "no way reaction",
+    "impostor": "maybe reaction"
+  },
+  {
+    "civilian": "yes reaction",
+    "impostor": "no reaction"
+  },
+  {
+    "civilian": "deal with it reaction",
+    "impostor": "regret reaction"
+  },
+  {
+    "civilian": "smug reaction",
+    "impostor": "caught lying reaction"
+  },
+  {
+    "civilian": "sneaky reaction",
+    "impostor": "innocent reaction"
+  },
+  {
+    "civilian": "plotting reaction",
+    "impostor": "confused planning reaction"
+  },
+  {
+    "civilian": "dramatic entrance reaction",
+    "impostor": "quiet entrance reaction"
+  },
+  {
+    "civilian": "dramatic exit reaction",
+    "impostor": "awkward exit reaction"
+  },
+  {
+    "civilian": "boss move reaction",
+    "impostor": "rookie mistake reaction"
+  },
+  {
+    "civilian": "dance battle reaction",
+    "impostor": "bad dance reaction"
+  },
+  {
+    "civilian": "sports win celebration",
+    "impostor": "sports loss reaction"
+  },
+  {
+    "civilian": "game winning shot reaction",
+    "impostor": "missed shot reaction"
+  },
+  {
+    "civilian": "clapping excited reaction",
+    "impostor": "golf clap reaction"
+  },
+  {
+    "civilian": "standing ovation reaction",
+    "impostor": "confused applause reaction"
+  },
+  {
+    "civilian": "popcorn watching drama reaction",
+    "impostor": "hiding from drama reaction"
+  },
+  {
+    "civilian": "tea sipping reaction",
+    "impostor": "spitting drink reaction"
+  },
+  {
+    "civilian": "eating happily reaction",
+    "impostor": "grossed out food reaction"
+  },
+  {
+    "civilian": "sleepy reaction",
+    "impostor": "wide awake reaction"
+  },
+  {
+    "civilian": "waking up reaction",
+    "impostor": "falling asleep reaction"
+  },
+  {
+    "civilian": "working hard reaction",
+    "impostor": "slacking off reaction"
+  },
+  {
+    "civilian": "typing fast reaction",
+    "impostor": "computer crash reaction"
+  },
+  {
+    "civilian": "phone call reaction",
+    "impostor": "ignoring phone reaction"
+  },
+  {
+    "civilian": "texting excited reaction",
+    "impostor": "left on read reaction"
+  },
+  {
+    "civilian": "studying reaction",
+    "impostor": "forgot homework reaction"
+  },
+  {
+    "civilian": "exam success reaction",
+    "impostor": "test panic reaction"
+  },
+  {
+    "civilian": "money celebration reaction",
+    "impostor": "broke reaction"
+  },
+  {
+    "civilian": "shopping excited reaction",
+    "impostor": "checking price tag reaction"
+  },
+  {
+    "civilian": "vacation reaction",
+    "impostor": "airport panic reaction"
+  },
+  {
+    "civilian": "beach relaxation reaction",
+    "impostor": "sunburn reaction"
+  },
+  {
+    "civilian": "rain dancing reaction",
+    "impostor": "caught in rain reaction"
+  },
+  {
+    "civilian": "snow day reaction",
+    "impostor": "freezing cold reaction"
+  },
+  {
+    "civilian": "hot weather reaction",
+    "impostor": "air conditioning reaction"
+  },
+  {
+    "civilian": "cold weather reaction",
+    "impostor": "too many blankets reaction"
+  },
+  {
+    "civilian": "romantic reaction",
+    "impostor": "friend zone reaction"
+  },
+  {
+    "civilian": "flirting reaction",
+    "impostor": "awkward flirting reaction"
+  },
+  {
+    "civilian": "heartbroken reaction",
+    "impostor": "moving on reaction"
+  },
+  {
+    "civilian": "best friends reaction",
+    "impostor": "third wheel reaction"
+  },
+  {
+    "civilian": "group hug reaction",
+    "impostor": "left out reaction"
+  },
+  {
+    "civilian": "birthday surprise reaction",
+    "impostor": "forgot birthday reaction"
+  },
+  {
+    "civilian": "gift opening excited reaction",
+    "impostor": "bad gift reaction"
+  },
+  {
+    "civilian": "winning lottery reaction",
+    "impostor": "losing ticket reaction"
+  },
+  {
+    "civilian": "found treasure reaction",
+    "impostor": "lost keys reaction"
+  },
+  {
+    "civilian": "superhero landing reaction",
+    "impostor": "tripping reaction"
+  },
+  {
+    "civilian": "villain laugh reaction",
+    "impostor": "nervous laugh reaction"
+  },
+  {
+    "civilian": "detective thinking reaction",
+    "impostor": "caught red handed reaction"
+  },
+  {
+    "civilian": "secret handshake reaction",
+    "impostor": "failed handshake reaction"
+  },
+  {
+    "civilian": "magic trick reaction",
+    "impostor": "magic trick failed reaction"
+  },
+  {
+    "civilian": "karaoke singing reaction",
+    "impostor": "bad singing reaction"
+  },
+  {
+    "civilian": "concert cheering reaction",
+    "impostor": "covering ears reaction"
+  },
+  {
+    "civilian": "movie night excited reaction",
+    "impostor": "movie scared reaction"
+  },
+  {
+    "civilian": "horror movie reaction",
+    "impostor": "comedy movie reaction"
+  },
+  {
+    "civilian": "jump scare reaction",
+    "impostor": "calm reaction"
+  },
+  {
+    "civilian": "plot twist reaction",
+    "impostor": "spoiler reaction"
+  },
+  {
+    "civilian": "fashion runway reaction",
+    "impostor": "wardrobe malfunction reaction"
+  },
+  {
+    "civilian": "makeover reveal reaction",
+    "impostor": "bad haircut reaction"
+  },
+  {
+    "civilian": "gym workout reaction",
+    "impostor": "tired workout reaction"
+  },
+  {
+    "civilian": "lifting weights reaction",
+    "impostor": "weak arms reaction"
+  },
+  {
+    "civilian": "running fast reaction",
+    "impostor": "out of breath reaction"
+  },
+  {
+    "civilian": "yoga calm reaction",
+    "impostor": "falling over yoga reaction"
+  },
+  {
+    "civilian": "cooking success reaction",
+    "impostor": "burnt food reaction"
+  },
+  {
+    "civilian": "baking cake reaction",
+    "impostor": "kitchen disaster reaction"
+  },
+  {
+    "civilian": "cleaning reaction",
+    "impostor": "messy room reaction"
+  },
+  {
+    "civilian": "home alone dancing reaction",
+    "impostor": "caught dancing reaction"
+  },
+  {
+    "civilian": "doorbell surprise reaction",
+    "impostor": "hiding from visitor reaction"
+  },
+  {
+    "civilian": "meeting success reaction",
+    "impostor": "zoom call fail reaction"
+  },
+  {
+    "civilian": "presentation confident reaction",
+    "impostor": "presentation panic reaction"
+  },
+  {
+    "civilian": "teamwork reaction",
+    "impostor": "doing everything alone reaction"
+  },
+  {
+    "civilian": "problem solved reaction",
+    "impostor": "new problem reaction"
+  },
+  {
+    "civilian": "genius idea reaction",
+    "impostor": "bad idea reaction"
+  },
+  {
+    "civilian": "light bulb idea reaction",
+    "impostor": "brain freeze reaction"
+  },
+  {
+    "civilian": "calm meditation reaction",
+    "impostor": "stress reaction"
+  },
+  {
+    "civilian": "peaceful reaction",
+    "impostor": "chaos reaction"
+  },
+  {
+    "civilian": "celebrating with friends reaction",
+    "impostor": "alone at party reaction"
+  },
+  {
+    "civilian": "mission accomplished reaction",
+    "impostor": "mission failed reaction"
+  }
+]

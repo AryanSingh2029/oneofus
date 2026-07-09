@@ -1,12 +1,17 @@
 export type GameMode = {
-  id: "word-match" | "picture-match" | "question-match" | "mafia";
+  id:
+    | "word-match"
+    | "picture-match"
+    | "question-match"
+    | "mafia"
+    | "gif-impostor";
   title: string;
   description: string;
   flow: string;
   players: string;
   minPlayers: number;
   maxPlayers: number;
-  icon: "word" | "picture" | "question" | "mafia";
+  icon: "word" | "picture" | "question" | "mafia" | "gif";
   setupEnabled: boolean;
 };
 
@@ -57,6 +62,18 @@ export const gameModes: GameMode[] = [
     minPlayers: 5,
     maxPlayers: 16,
     icon: "mafia",
+    setupEnabled: true,
+  },
+  {
+    id: "gif-impostor",
+    title: "GIF Impostor",
+    description:
+      "Everyone gets the same visual prompt except one player. Read the room, describe just enough, and catch the mismatch.",
+    flow: "Reveal -> react -> suspect -> vote",
+    players: "3-10 players",
+    minPlayers: 3,
+    maxPlayers: 10,
+    icon: "gif",
     setupEnabled: true,
   },
 ];

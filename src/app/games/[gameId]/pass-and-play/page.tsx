@@ -27,9 +27,9 @@ export default async function PassAndPlayPage({ params }: PassAndPlayPageProps) 
   return (
     <main className="min-h-screen bg-canvas text-ink">
       <nav className="mx-auto flex h-14 max-w-content items-center justify-between px-5 text-sm text-ink-muted md:px-8">
-        <Link className="flex items-center gap-2 hover:text-ink" href={`/games/${mode.id}`}>
+        <Link className="flex items-center gap-2 hover:text-ink" href="/#games">
           <ArrowLeft size={16} />
-          Play style
+          Games
         </Link>
         <Link className="font-medium text-ink" href="/">
           One of Us

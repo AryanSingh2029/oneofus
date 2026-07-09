@@ -36,9 +36,9 @@ export default function HomePage() {
             One room. One secret. One player does not match.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 tracking-[-0.1px] text-ink-muted">
-            Play word match, picture match, question match, and Mafia from
-            every phone in the room, or pass a single phone around when you want
-            zero setup.
+            Play word match, picture match, question match, GIF Impostor, and
+            Mafia by passing a single phone around the group. Private reveals,
+            quick discussion, and no room setup.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
@@ -87,13 +87,13 @@ export default function HomePage() {
         <div className="surface-panel grid gap-6 p-6 md:grid-cols-3 md:p-8">
           <Feature
             icon={<Smartphone size={18} />}
-            title="Every-phone rooms"
-            body="Host a room and let everyone join from their own phone when you want private screens for the whole group."
+            title="Single-phone pass"
+            body="A local mode for quick groups: reveal, hide, pass, discuss, vote."
           />
           <Feature
             icon={<MessageCircleQuestion size={18} />}
-            title="Single-phone pass"
-            body="A local mode for quick groups: reveal, hide, pass, discuss, vote."
+            title="Private prompts"
+            body="Each player gets their word, question, role, image, or GIF without needing a separate device."
           />
           <Feature
             icon={<ShieldHalf size={18} />}

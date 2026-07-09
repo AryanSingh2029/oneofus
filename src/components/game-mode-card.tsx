@@ -1,4 +1,9 @@
-import { Image, MessageCircleQuestion, ShieldHalf } from "lucide-react";
+import {
+  Film,
+  Image,
+  MessageCircleQuestion,
+  ShieldHalf,
+} from "lucide-react";
 import Link from "next/link";
 import type { GameMode } from "@/lib/game-modes";
 
@@ -7,6 +12,7 @@ const icons = {
   picture: Image,
   question: MessageCircleQuestion,
   mafia: ShieldHalf,
+  gif: Film,
 };
 
 export function GameModeCard({ mode }: { mode: GameMode }) {
@@ -42,7 +48,7 @@ export function GameModeCard({ mode }: { mode: GameMode }) {
   return (
     <Link
       className="focus-ring block rounded-lg border border-hairline bg-surface-1 p-6 transition-colors hover:border-hairline-strong hover:bg-surface-2"
-      href={`/games/${mode.id}`}
+      href={`/games/${mode.id}/pass-and-play`}
     >
       {content}
     </Link>
